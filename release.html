@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-03RLMC82T2"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-03RLMC82T2');
+		</script>
+
+		<script>
+			function copy_to_clipboard() {
+				/* Get the text field */
+				var copyText = document.getElementById("citeTextarea");
+
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+			}
+		</script>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap and Font-Awesome -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"
+			rel="stylesheet">
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+		<link href="css/theme.css" rel="stylesheet">
+		<title>SLAP and FLOP</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<section id="abstract">
+				<div class="card-deck">
+
+					<div class="card d-flex flex-column">
+						<img class="card-img-top mt-3 px-5" src="img/SLAP-Logo.svg"
+							style="width: 80%; display: block; margin: auto;" id="logo" alt="SLAP Logo" />
+
+						<h1 class="text-center blue mx-1">SLAP</h1>
+						<h2 class="text-center blue mx-1">Data <b>S</b>peculation Attacks via<br><b>L</b>oad
+							<b>A</b>ddress <b>P</b>rediction<br>on
+							Apple
+							Silicon
+						</h2>
+
+						<div class="card-body">
+							<p class="card-text">
+								We present SLAP, a new speculative execution attack that arises from optimizing data
+								dependencies, as opposed to control flow dependencies. More specifically, we show that Apple CPUs
+								starting with the M2/A15 are equipped with a Load Address Predictor (LAP),
+								which improves performance by guessing the next memory address the CPU will retrieve
+								data from based on prior memory access patterns.
+							</p>
+
+							<p style="margin-bottom: 2.5rem;">
+								However, if the LAP guesses wrong, it causes the CPU to perform arbitrary computations
+								on out-of-bounds data, which should never have been accessed to begin with, under
+								speculative execution. Building on this observation, we demonstrate the real-world
+								security risks of the LAP via an end-to-end attack on the Safari web browser where an
+								unprivileged remote adversary can recover email content and browsing behavior.
+							</p>
+						</div>
+
+						<div class="card-footer text-center w-100">
+							<a href="files/SLAP.pdf" class="btn btn-primary mr-2"><i class="fa fa-file"></i> Read
+								the Paper</a>
+
+							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#cite-slap"><i
+									class="fa fa-quote-right"></i> Cite</a>
+						</div>
+
+						<div class="modal fade" id="cite-slap" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Cite SLAP</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<div class="modal-body">
+										<textarea class="form-control rounded-0" id="citeTextarea" rows="8" readonly>
+
+@inproceedings{slap,
+    title={SLAP: Data Speculation Attacks via Load Address Prediction on Apple Silicon},
+    booktitle = {S\&{P}},
+    author={Jason Kim and Daniel Genkin and Yuval Yarom},
+    year = {2025},
+}
+
+					</textarea>
+									</div>
+
+									<div class="modal-footer">
+										<a href="javascript:copy_to_clipboard()" class="btn btn-primary mr-auto"><i
+												class="fa fa-clipboard" aria-hidden="true"></i> Copy to clipboard</a>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card d-flex flex-column">
+						<img class="card-img-top mt-3 px-5" src="img/FLOP-Logo.svg"
+							style="width: 80%; display: block; margin: auto;" id="logo" alt="FLOP Logo" />
+
+						<h1 class="text-center blue mx-1">FLOP</h1>
+						<h2 class="text-center blue mx-1">Breaking the Apple M3 CPU via <b>F</b>alse <b>L</b>oad
+							<b>O</b>utput <b>P</b>redictions
+						</h2>
+
+						<div class="card-body">
+							<p class="card-text">
+								We present FLOP, another speculative execution attack that results from recent Apple CPUs predicting the outcome of data dependencies. Here, we demonstrate that 
+								Apple's M3/A17 generation and newer CPUs are equipped with a Load Value Predictor (LVP). The LVP improves performance on data
+								dependencies by guessing the data value that will be returned by the memory subsystem on
+								the next access by the CPU core, before the value is actually available.
+							</p>
+
+							<p>
+								If the LVP guesses wrong, the CPU can perform arbitrary computations on incorrect data
+								under speculative execution. This can cause critical checks in program logic for memory
+								safety to be bypassed, opening attack surfaces for leaking secrets stored in memory. We
+								demonstrate the LVP's dangers by orchestrating these attacks on both the Safari and
+								Chrome web browsers in the form of arbitrary memory read primitives, recovering location
+								history, calendar events, and credit card information.
+							</p>
+						</div>
+
+						<div class="card-footer text-center">
+							<a href="files/FLOP.pdf" class="btn btn-primary mr-2"><i class="fa fa-file"></i> Read the
+								Paper</a>
+							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#cite-flop"><i
+									class="fa fa-quote-right"></i> Cite</a>
+						</div>
+
+						<div class="modal fade" id="cite-flop" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Cite FLOP</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<div class="modal-body">
+										<textarea class="form-control rounded-0" id="citeTextarea" rows="8" readonly>
+
+@inproceedings{flop,
+    title={FLOP: Breaking the Apple M3 CPU via False Load Output Predictions},
+    booktitle = {USENIX Security},
+    author={Jason Kim and Jalen Chuang and Daniel Genkin and Yuval Yarom},
+    year = {2025},
+}
+
+					</textarea>
+									</div>
+
+									<div class="modal-footer">
+										<a href="javascript:copy_to_clipboard()" class="btn btn-primary mr-auto"><i
+												class="fa fa-clipboard" aria-hidden="true"></i> Copy to clipboard</a>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<div class="container">
+				<section id="demos">
+					<h4 style="padding-top: 20px;">Demos</h4>
+
+					<h5 class="gray">Leaking Proton Mail's Inbox Data</h5>
+					<p>We train the M3 CPU's LVP via sandboxed JavaScript code running inside WebKit (Safari's browsing engine). When the mouse cursor is over our demo webpage, our proof-of-concept opens Proton Mail's inbox in a new window, but uses the same process to render the inbox. This brings the inbox content into the address space, making it accessible with a sandbox escape. Finally, we use the LVP to craft an arbitrary read primitive to anywhere in this address space, recovering the sender and subject lines shown on the inbox page.</p>
+					<div class="ratio ratio-16x9">
+						<video src="files/lvp-webkit-demo.mp4" controls muted style="max-width: 100%;"></video>
+					</div>
+
+					<h5 class="gray" style="padding-top: 30px;">Reading The Great Gatsby Using Load Address Prediction</h5>
+					<p>We demonstrate an LAP proof-of-concept on the Apple M2 CPU that recovers a secret string. The string holds the first paragraph of The Great Gatsby, but is never architecturally accessed. At the LAP's incorrectly guessed memory address, we place a pointer to the characters of the string. Subsequently, we train and activate the LAP.</p>
+					<div class="ratio ratio-16x9">
+						<video src="files/lap-demo.webm" controls muted style="max-width: 100%;"></video>
+					</div>
+
+					<h5 class="gray" style="padding-top: 30px;">Reading Harry Potter Using Load Value Prediction</h5>
+					<p>On the Apple M3 CPU, we demonstrate an LVP proof-of-concept that recovers the first paragraph of Harry Potter and the Sorcerer's Stone, which is also never architecturally read by the CPU core. We cause the LVP to predict and access an incorrect array index. There, we place the pointer to the string's characters, which the CPU then dereferences.
+					</p>
+					<div class="ratio ratio-16x9">
+						<video src="files/lvp-demo.webm" controls muted style="max-width: 100%;"></video>
+					</div>
+				</section>
+
+				<section id="people">
+					<h4 style="padding-top: 20px;">The People Behind
+						<span style="color: #b14506;">SLAP and FLOP</span>
+					</h4>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<ul>
+									<li><a href="https://jas0n.kim/">Jason Kim </a><span class="badge badge-gatech"><a
+												class="univ" href="https://www.gatech.edu/">Georgia Institute of
+												Technology</a></span></li>
+									<li><a href="https://sites.cc.gatech.edu/grads/j/jchuang9/">Jalen Chuang</a> <span
+											class="badge badge-gatech"><a class="univ"
+												href="https://www.gatech.edu/">Georgia
+												Institute of
+												Technology</a></span></li>
+									<li><a href="https://faculty.cc.gatech.edu/~genkin/">Daniel Genkin</a> <span
+											class="badge badge-gatech"><a class="univ"
+												href="https://www.gatech.edu/">Georgia Institute of
+												Technology</a></span>
+									</li>
+									<li><a href="https://yuval.yarom.org/">Yuval Yarom</a> <span
+											class="badge badge-rub"><a class="univ"
+												href="https://www.ruhr-uni-bochum.de/">Ruhr University
+												Bochum</a></span></li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<h2 style="text-align: center;"><b><a class="fail"
+											href="https://architecture.fail/">architecture.fail</a></b></h2>
+								<p style="text-align: center;">Check out our lab website!</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<p style="text-align: center;"><b>Contact us at <a
+											href="mailto:slapflop@googlegroups.com">slapflop@googlegroups.com</a></b></p>
+								<br>
+								<div class="row align-items-center" style="margin-top: -20px; margin-bottom: -20px;">
+									<div class="col-lg-2"></div>
+									<div class="col-lg-5" style="text-align: center;">
+										<img class="img-fluid" src="img/gatech.png"
+											alt="Georgia Institute of Technology"
+											style="padding: 10px; max-height: 100px;" />
+									</div>
+									<div class="col-lg-3" style="text-align: center;">
+										<img class="img-fluid" src="img/rub.svg" alt="Ruhr University Bochum"
+											style="padding: 10px; max-height: 100px;" />
+									</div>
+									<div class="col-lg-2"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="qa">
+					<h4 style="padding-top: 20px;">Frequently Asked <span style="color: #b14506;">Questions</span></h4>
+
+					<h5 class="gray">SLAP and FLOP Basics</h5>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-1">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-1" aria-expanded="true"
+										aria-controls="basics-answer-1">
+										Is my Apple device affected?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-1" class="collapse" aria-labelledby="basics-question-1">
+								<div class="card-body">
+									<p>The affected Apple devices are the following:</p>
+									<ul>
+										<li>All Mac laptops from 2022-present (MacBook Air, MacBook Pro)</li>
+										<li>All Mac desktops from 2023-present (Mac Mini, iMac, Mac Studio, Mac Pro) </li>
+										<li>All iPad Pro, Air, and Mini models from September 2021-present (Pro 6th and 7th gen., Air 6th gen., Mini 6th gen.)</li>
+										<li>All iPhones from September 2021-present (All 13, 14, 15, and 16 models, SE 3rd gen.)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-2">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-2" aria-expanded="true"
+										aria-controls="basics-answer-2">
+										Why are the SLAP and FLOP attacks significant?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-2" class="collapse" aria-labelledby="basics-question-2">
+								<div class="card-body">
+									<p>There are hardware and software measures to ensure that two open webpages are isolated from each other, 
+									   preventing one of them form (maliciously) reading the other's contents. SLAP and FLOP break these protections, 
+									   allowing attacker pages to read sensitive login-protected data from target webpages. In our work, we show
+										that this data ranges from location history to credit card information.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-3">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-3" aria-expanded="true"
+										aria-controls="basics-answer-3">
+										How can I defend against SLAP and FLOP?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-3" class="collapse" aria-labelledby="basics-question-3">
+								<div class="card-body">
+									<p> While FLOP has an actionable mitigation, implementing it requires patches from software vendors and cannot be done by users. 
+									Apple has communicated to us that they plan to address these issues in an
+										upcoming security update, hence it is important to enable automatic updates and
+										ensure that your devices are running the latest operating system and applications.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-4">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-4" aria-expanded="true"
+										aria-controls="basics-answer-4">
+										What about other processor vendors?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-4" class="collapse" aria-labelledby="basics-question-4">
+								<div class="card-body">
+									<p>We have not yet observed load address prediction or load value prediction 
+									   in other processor vendors' products, such as Intel, AMD, Qualcomm, or Ampere.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-5">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-5" aria-expanded="true"
+										aria-controls="basics-answer-5">
+										What about other web browsers?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-5" class="collapse" aria-labelledby="basics-question-5">
+								<div class="card-body">
+									<p> We do not know, as we have not tested other browsers such as Firefox. </p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-6">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-6" aria-expanded="true"
+										aria-controls="basics-answer-6">
+										Can I detect if someone is using SLAP or FLOP on my device?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-6" class="collapse" aria-labelledby="basics-question-6">
+								<div class="card-body">
+									<p>Since SLAP and FLOP are microarchitecture-based attacks, they do not leave any traces in
+										the system's log files. While cached copies of previously visited websites may
+										be present in the web browser, it is difficult to automatically detect malicious
+										code patterns that exploit hardware vulnerabilities.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-7">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-7" aria-expanded="true"
+										aria-controls="basics-answer-7">
+										Are any malicious actors abusing SLAP or FLOP in the wild?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-7" class="collapse" aria-labelledby="basics-question-7">
+								<div class="card-body">
+									<p>So far, we do not have any evidence that either SLAP or FLOP has been used in the
+										wild.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="basics-question-8">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#basics-answer-8" aria-expanded="true"
+										aria-controls="basics-answer-8">
+										When did you notify Apple?
+									</button>
+								</h6>
+							</div>
+
+							<div id="basics-answer-8" class="collapse" aria-labelledby="basics-question-8">
+								<div class="card-body">
+									<p>We disclosed SLAP to Apple on May 24, 2024, and FLOP on September 3, 2024.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h5 class="gray">Technical Questions</h5>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-1">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-1" aria-expanded="true" aria-controls="tech-answer-1">
+										What is a Side Channel?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-1" class="collapse" aria-labelledby="tech-question-1">
+								<div class="card-body">
+									<p>
+										Most computer bugs arise from mistakes in programming, such as missing bounds
+										checks 	or use-after-frees. However, a side-channel attack exploits the implementation
+										of a computer's hardware to attack it, even if the software it runs is a secure algorithm.
+										Systems can leak sensitive data through sound, electromagnetic radiation, or
+										thermal throttling, just for a few examples.
+									</p>
+									<p>
+										Many side channels, including ones we use for SLAP and FLOP, comes from the
+										CPU's microarchitecture. Whenever an attacker and target run on the physical CPU, they share the CPU's
+										internal resources such as cores, caches, and internal buffers.
+										Sharing resources leads to contention, and contention can be measured indirectly
+										through several variables like timing or power consumption.
+										These measurements leave fingerprints on the target's behavior on the CPU.
+										Accordingly, an attacker can abuse this to make inferences about the target's
+										secrets even if they are isolated at the process level or the hypervisor level.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-2">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-2" aria-expanded="true" aria-controls="tech-answer-2">
+										What are Speculative Execution Attacks?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-2" class="collapse" aria-labelledby="tech-question-2">
+								<div class="card-body">
+									<p>
+										Virtually all modern CPUs use a performance optimization where they predict the
+										control flow the CPU should take (such as branches and returns), should the
+										outcome not be readily available. Once a prediction is made, the CPU will execute instructions along
+										the prediction, a process called speculative execution. If the CPU realizes it had
+										mispredicted, it must revert all changes in the state it performed after the
+										prediction. Nearly all desktop and mobile CPUs exhibit this behavior, regardless of
+										manufacturer (such as Apple, AMD, or Intel).
+									</p>
+									<p>
+										<a href="https://spectreattack.com/">Spectre</a> is a hardware vulnerability in
+										virtually all modern CPUs that occurs when speculative execution backfires.
+										While the CPU should ideally revert all changes in state, speculative execution leaves
+										traces in the CPU's microarchitectural state and especially the cache. A Spectre
+										attack coerces the CPU into speculatively executing the wrong flow of
+										instructions. If this wrong flow has instructions depending on sensitive data, their value can
+										be inferred through a side channel even after the CPU realizes the mistake and
+										reverts its changes. An adversary can abuse this behavior to read data that they cannot
+										normally access through program semantics. Because speculative execution is an
+										important part of CPU performance that is infeasible to simply remove as a
+										countermeasure, Spectre continues to be dangerous to software even years after
+										its discovery.
+									</p>
+									<p>
+										In SLAP and FLOP, we demonstrate that recent Apple CPUs go beyond this, not only
+										predicting the control flow the CPU should take, but also the data flow the CPU
+										should operate on if data are not readily available from the memory subsystem.
+										Unlike Spectre, mispredictions on data flow do not directly result in the CPU
+										speculatively executing the wrong instructions. Instead, they result in the CPU
+										executing arbitrary instructions on the wrong data. However, we show this can be combined with
+										indirection techniques to execute wrong instructions.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-3">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-3" aria-expanded="true" aria-controls="tech-answer-3">
+										How does SLAP work?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-3" class="collapse" aria-labelledby="tech-question-3">
+								<div class="card-body">
+									<p>To orchestrate SLAP, we begin by reverse engineering Apple's implementation of Load Address Prediction (LAP). 
+									We discover that if we train the LAP on striding memory addresses, the LAP will access address the next sequence 
+									in the striding pattern and compute using the data in that address, even if the program never actually accesses it.
+									Here, we note that this is different from hardware prefetching. While prefetchers may bring the data inside the predicted addresses, 
+									they do not speculatively execute downstream instructions based on the prediction. </p>
+									<p>Next, we find an attack surface in Safari. Previously, <a href="https://ileakage.com/">iLeakage</a> demonstrated a corner case 
+									in Safari's isolation scheme where an adversary's webpage can coerce an arbitrary target webpage to be handled by the same process. 
+									We find that when this occurs, the two webpages also share internal memory allocation regions for data, such as strings. 
+									In turn, this allows the adversary to jump the LAP to the target webpage's string and trick the CPU into operating on it, eventually leaking the string's content over a covert channel.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-4">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-4" aria-expanded="true" aria-controls="tech-answer-4">
+										How does FLOP work?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-4" class="collapse" aria-labelledby="tech-question-4">
+								<div class="card-body">
+									<p>Similarly to SLAP, we reverse engineer the Load Value Prediction (LVP) mechanism in Apple CPUs. 
+									We found that if the LVP sees the same data value being repeatedly returned from the memory subsystem for the same load instruction, 
+									the LVP will attempt to guess the load's outcome the next time that load instruction executes, even if the memory accessed by the load now contains a completely different value! 
+									Therefore, using the LVP, we can trick the CPU into computing on incorrect data values.</p>
+									<p>We first demonstrate the dangers stemming from LVP in Safari, whose JavaScript engine first vets the type information of JavaScript data structures before determining the 
+									appropriate computations to run on them. If we train the LVP on the load instruction that retrieves this type information, we can cause code that is only supposed to run for 
+									one data structure on another data structure, causing speculative type confusion, and obtaining a read primitive to arbitrary 64-bit addresses. </p>
+									
+									<p> Next, we move to Chrome, where internal table data structures for calling WebAssembly functions also vet the signature of each function before calling them with arguments. 
+									Here, we show that the LVP allows us to run a function with the wrong arguments (e.g., pointer instead of integer), again resulting in a type confusion based primitive for reading arbitrary memory addresses.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-5">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-5" aria-expanded="true" aria-controls="tech-answer-5">
+										What is the difference between SLAP and FLOP?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-5" class="collapse" aria-labelledby="tech-question-5">
+								<div class="card-body">
+									<p>SLAP exploits a phenomenon in Safari where strings that belong to different webpages can be allocated within a close distance to each other, and thus discloses cross-origin strings that are allocated in proximity to the adversary's own strings. On the other hand, FLOP is a speculative type confusion attack that causes the CPU to bypass integrity checks on data structures, resulting in memory read primitives from arbitrary addresses in Safari and Chrome.</p>
+									<p>
+									Furthermore, the underlying CPU microarchitecture that SLAP and FLOP exploit are also different. SLAP uses the Load Address Predictor (LAP), while FLOP uses the Load Value Predictor (LVP).
+									As suggested by their names, the LAP predicts addresses while the LVP predicts values. 
+									Consider the following statement: "The CPU accesses memory at address 0xdeadbeef, 
+									which contains the value 0x1234." The next time the CPU performs a memory access, the LAP predicts the next address, i.e., what 0xdeadbeef will change to. Meanwhile, the LVP predicts the next value returned from memory, that is, what 0x1234 will change to. 
+									Going deeper in detail, we observe their internal structures are also different. For instance, the LAP requires a longer training sequence than the LVP to activate reliably, but only the LAP can observe strides and generate predictions accordingly.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-6">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-6" aria-expanded="true" aria-controls="tech-answer-6">
+										What are JavaScript and WebAssembly?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-6" class="collapse" aria-labelledby="tech-question-6">
+								<div class="card-body">
+									<p>
+										JavaScript and WebAssembly are two programming languages that make up the
+										backbone of interactive webpages, such as online games and video streaming
+										services. JavaScript can update the content of the website directly, while
+										WebAssembly is used for high-performance web applications. Ultimately,
+										WebAssembly interfaces with JavaScript to deliver dynamic content to users.
+										Since both are sandboxed in a browser environment, side-channel attacks are
+										notably more difficult to implement in these languages. However, the impact is
+										drastically greater, as browsers execute both types of code automatically and do
+										not require the user to download the malicious program.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="tech-question-7">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#tech-answer-7" aria-expanded="true" aria-controls="tech-answer-7">
+										Why did you attack Safari and Chrome?
+									</button>
+								</h6>
+							</div>
+
+							<div id="tech-answer-7" class="collapse" aria-labelledby="tech-question-7">
+								<div class="card-body">
+									<p>For leaking secrets, both SLAP and FLOP are confined to the address space they are trained in. 
+									As pointed out by <a href="https://ileakage.com/">iLeakage</a>, Safari lacks Site Isolation, a measure used to enforce that two different webpages not from the same domain can never be handled by the same process.
+									Thus, in Safari it is possible for an adversary's webpage to be handled by the same process (and thus address space) with an arbitrary webpage, increasing the attack surface including LAP- and LVP-based exploits.
+									 </p>
+									
+									<p>On the other hand, although Chrome is equipped with Site Isolation, we demonstrate that it is not a perfect mitigation. We show the real-world existence of corner cases, where two subdomains of the same site can be merged into one process, again leading to LAP- and LVP-based attacks.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h5 class="gray">Miscellaneous</h5>
+					<div id="accordion">
+						<div class="card">
+							<div id="misc-question-1">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#misc-answer-1" aria-expanded="true" aria-controls="misc-answer-1">
+										Can I use the logos?
+									</button>
+								</h6>
+							</div>
+
+							<div id="misc-answer-1" class="collapse" aria-labelledby="misc-question-1">
+								<div class="card-body">
+									<p>Yes, with rights waived via <a
+											href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>. You can
+										right-click each logo, which should list an option to save the image as a file.
+									<p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="misc-question-2">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#misc-answer-2" aria-expanded="true" aria-controls="misc-answer-2">
+										Where can I find more information?
+									</button>
+								</h6>
+							</div>
+
+							<div id="misc-answer-2" class="collapse" aria-labelledby="misc-question-2">
+								<div class="card-body">
+									<p>The 'Read the Paper' buttons at the top of this website link to academic papers
+										for SLAP and FLOP. SLAP will appear at the <a href="https://sp2025.ieee-security.org/">2025 IEEE Symposium on Security and
+										Privacy</a>, and FLOP will appear at the <a href="https://www.usenix.org/conference/usenixsecurity25">2025 USENIX Security Symposium</a>.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="accordion">
+						<div class="card">
+							<div id="misc-question-3">
+								<h6>
+									<button class="btn btn-link collapsed" data-toggle="collapse"
+										data-target="#misc-answer-3" aria-expanded="true" aria-controls="misc-answer-3">
+										Where can I find artifacts for these papers?
+									</button>
+								</h6>
+							</div>
+
+							<div id="misc-answer-3" class="collapse" aria-labelledby="misc-question-3">
+								<div class="card-body">
+									<p>You can find reverse-engineering experiment code and proof-of-concepts for SLAP at <a href="https://github.com/slap-flop/slap-artifacts">https://github.com/slap-flop/slap-artifacts</a> and for FLOP at <a href="https://zenodo.org/records/14680908">https://zenodo.org/records/14680908.</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</section>
+				<section id="acknowledgments">
+					<h4>Acknowledgments</h4>
+					<div class="block">
+						<p>
+							This research was supported by
+							the Air Force Office of Scientific Research (AFOSR) under award number FA9550-24-1-0079;
+							the Alfred P Sloan Research Fellowship;
+							an ARC Discovery Project number DP210102670;
+							the Defense Advanced Research Projects Agency (DARPA) under contract numbers
+							W912CG-23-C-0022,
+							the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's
+							Excellence Strategy - EXC 2092 CASA - 390781972;
+							and gifts from Qualcomm, Cisco (SLAP), and Zama (FLOP).
+							<br><br>
+							The views and conclusions contained in this document are those of the authors and should not
+							be interpreted as representing the official policies, either expressed or implied, of the
+							U.S. Government.
+						</p>
+					</div>
+				</section>
+			</div>
+
+			<footer>
+				<div class="text-center w-100">
+					<span>Copyright &copy; 2025 Georgia Institute of Technology. All rights reserved.</span>
+				</div>
+			</footer>
+
+			<!-- Cite breaks without older Bootstrap -->
+			<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+				integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+				crossorigin="anonymous"></script>
+
+	</body>
+
+</html>
